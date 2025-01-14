@@ -67,8 +67,10 @@ def main(farm_data_path):
                     if real_threshold == "":
                         real_threshold = 230
 
+                    chunk_id = input("请输入ChunkId的值：\n")
+
                     data_root["Chunks"] = gen_all_map(img2arr(img), data_root["Chunks"],
-                                                      new_replace_item, threshold=int(real_threshold))
+                                                      new_replace_item, threshold=int(real_threshold), chunk_id=chunk_id)
 
                     print("地图已生成，请注意保存存档。")
                     break
