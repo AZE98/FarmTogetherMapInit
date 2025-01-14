@@ -39,8 +39,8 @@ def img2arr(image, is_one=False):
     return np.asarray(image)
 
 
-def gen_block(x, y, image_array, chunks_json, replace, threshold=230, is_one=False):
-    chunks_json['ChunkId'] = 'Flat_Chunk'
+def gen_block(x, y, image_array, chunks_json, replace, threshold=230, is_one=False, chunk_id='Flat_Chunk'):
+    chunks_json['ChunkId'] = chunk_id
     json_temp = chunks_json['Tiles']
     if is_one:  # 是整张图
         x, y = 0, 7-1
@@ -56,10 +56,10 @@ def gen_block(x, y, image_array, chunks_json, replace, threshold=230, is_one=Fal
     return chunks_json
 
 
-def gen_all_map(image_array, chunks_json, replace, threshold=230):
+def gen_all_map(image_array, chunks_json, replace, threshold=230, chunk_id='Flat_Chunk'):
     for x in range(7):
         for y in range(7):
-            chunks_json[7 * x + y] = gen_block(x, y, image_array, chunks_json[7 * x + y], replace, threshold=threshold)
+            chunks_json[7 * x + y] = gen_block(x, y, image_array, chunks_json[7 * x + y], replace, threshold=threshold, chunk_id=chunk_id)
     return chunks_json
 
 
